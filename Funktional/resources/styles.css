@@ -1,0 +1,95 @@
+.background {
+  viewport-fill: black;
+}
+
+#clockText {
+  font-size: 100;
+  font-family: Fabrikat-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 50%+30;
+  fill: white;
+}
+
+#dateText {
+  font-size: 60;
+  font-family: Tungsten-Medium;
+  text-length: 50;
+  text-anchor: middle;
+  x: 50%;
+  y: 50%+90;
+  fill: chartreuse;  
+}
+
+#weekText {
+  font-size: 60;
+  font-family: Tungsten-Medium;
+  text-length: 50;
+  text-anchor: middle;
+  x: 50%;
+  y: 50%-60;
+  fill: chartreuse;
+}
+
+.stats {
+  font-size: 30;
+  font-family: Fabrikat-Bold;
+  fill: grey;
+	text-length: 10;
+}
+
+.icon {
+	width: 24;
+	height: 24;
+}
+
+#heartRateText {
+  x: 100%-30;
+  y: 30;
+	text-anchor: end;
+}
+
+#heartRateIcon {
+	x: 100%-30;
+	y: 5;
+	fill: red;
+}
+
+#batteryText {
+  x: 10;
+  y: 30;
+	text-anchor: start;
+}
+
+#floorsText {
+  x: 100%-30;
+  y: 100%-10;	
+	text-anchor: end;
+}
+
+#floorsIcon {
+	x: 100%-30;
+	y: 100%-30;
+	fill: green;
+}
+
+#stepsText {
+  x: 30;
+  y: 100%-10;
+	text-anchor: start;
+}
+
+#stepsIcon {
+	x: 5;
+	y: 100%-30;
+	fill: blue;
+}
+
+#secondsCircle {
+		width: 100%-15;
+		height: 100%-15;
+		x: 10;
+		y: 10;
+		fill: red;
+}
