@@ -28,6 +28,7 @@ const heartRateText = document.getElementById("heartRateText");
 const stepsText = document.getElementById("stepsText");
 const floorsText = document.getElementById("floorsText");
 const batteryText = document.getElementById("batteryText");
+const activeText = document.getElementById("activeText");
 const sMeter = document.getElementById("secondsCircle");
 
 const week = {
@@ -63,6 +64,7 @@ clock.ontick = (evt) => {
   heartRateText.text = heartRate || '--';
   floorsText.text = today.local ? (today.local.elevationGain || 0) : 0;
   stepsText.text = today.local ? (today.local.steps || 0) : 0;
+	activeText.text = today.local ? (today.local.activeMinutes || 0) : 0;
   //let batteryLevel = parseInt(battery.chargeLevel);
   batteryText.text = battery.chargeLevel + '%';
 

@@ -19,7 +19,8 @@
   text-anchor: middle;
   x: 50%;
   y: 50%+90;
-  fill: chartreuse;  
+  fill: chartreuse;
+	opacity: 0.8;
 }
 
 #weekText {
@@ -30,6 +31,7 @@
   x: 50%;
   y: 50%-60;
   fill: chartreuse;
+	opacity: 0.8;
 }
 
 .stats {
@@ -52,14 +54,29 @@
 
 #heartRateIcon {
 	x: 100%-30;
-	y: 5;
+	y: 7;
 	fill: red;
+	opacity: 0.7;
 }
 
 #batteryText {
-  x: 10;
+  x: 50%;
+  y: 30;
+	text-anchor: middle;
+	color: #dddddd;
+}
+
+#activeText {
+  x: 30;
   y: 30;
 	text-anchor: start;
+}
+
+#activeIcon {
+	x: 5;
+	y: 7;
+	fill: yellow;
+	opacity: 0.7;
 }
 
 #floorsText {
@@ -70,7 +87,7 @@
 
 #floorsIcon {
 	x: 100%-30;
-	y: 100%-30;
+	y: 100%-32;
 	fill: green;
 }
 
@@ -82,8 +99,9 @@
 
 #stepsIcon {
 	x: 5;
-	y: 100%-30;
-	fill: blue;
+	y: 100%-32;
+	fill: #7777ff;
+	opacity: 0.7;
 }
 
 #secondsCircle {
@@ -92,4 +110,5 @@
 		x: 10;
 		y: 10;
 		fill: red;
+		opacity: 0.7;
 }
