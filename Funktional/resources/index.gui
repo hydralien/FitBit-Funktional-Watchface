@@ -10,6 +10,8 @@
   <arc id="secondsCircle"
     arc-width="15" start-angle="0" sweep-angle="0" />
   <text id="clockText" />
+    <text id="clockTextAM">AM</text>
+    <text id="clockTextPM">PM</text>
   <text id="dateText" />
   <text id="weekText" />
   <image class="icon" id="activeIcon" href="stat_am_solid_24px.png" />

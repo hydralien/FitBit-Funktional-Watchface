@@ -11,7 +11,7 @@ let heartRate = 0;
 if (me.permissions.granted("access_heart_rate")) {
   let hrm = new HeartRateSensor({frequency: 1});
   hrm.onreading = function() {
-    console.log("Current heart rate: " + hrm.heartRate);
+    //console.log("Current heart rate: " + hrm.heartRate);
     heartRate = hrm.heartRate;
   }
   hrm.start();
@@ -22,6 +22,9 @@ clock.granularity = "seconds";
 
 // Get a handle on the <text> element
 const clockText = document.getElementById("clockText");
+const clockAM = document.getElementById("clockTextAM");
+const clockPM = document.getElementById("clockTextPM");
+
 const dateText = document.getElementById("dateText");
 const weekText = document.getElementById("weekText");
 const heartRateText = document.getElementById("heartRateText");
@@ -47,19 +50,34 @@ clock.ontick = (evt) => {
   let hours = thisDay.getHours();
   let minutes = thisDay.getMinutes();
   let seconds = thisDay.getSeconds();
+
   if (preferences.clockDisplay === "12h") {
     // 12h format
-    hours = hours % 12 || 12;
+		if (hours < 12) {
+			clockPM.style.display = "none";
+			clockAM.style.display = "inline";
+		} else {
+			clockPM.style.display = "inline";
+			clockAM.style.display = "none";
+		}
+		hours = hours % 12 || 12;
   } else {
     // 24h format
     hours = util.zeroPad(hours);
-  }
+		clockPM.style.display = "none";
+		clockAM.style.display = "none";
+  }	
 
   let mins = util.zeroPad(minutes);
   let secs = util.zeroPad(seconds);
 
+	//let thisTZDay = new Date(thisDay.getTime() + thisDay.getTimezoneOffset()*60000);
+	let dayNo = util.zeroPad(thisDay.getDate());
+	let monthNo = util.zeroPad(thisDay.getMonth()+1);
+	let yearNo = thisDay.getYear() + 1900;
+
   clockText.text = `${hours}:${mins}`;//:${secs}`;
-  dateText.text = thisDay.toDateString();
+	dateText.text = `${yearNo}-${monthNo}-${dayNo}`;
   weekText.text = week[thisDay.getDay()];
   heartRateText.text = heartRate || '--';
   floorsText.text = today.local ? (today.local.elevationGain || 0) : 0;

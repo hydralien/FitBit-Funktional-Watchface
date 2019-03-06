@@ -12,6 +12,28 @@
   fill: white;
 }
 
+#clockTextAM {
+  font-size: 30;
+  font-family: Fabrikat-Bold;
+  text-length: 2;
+  text-anchor: end;
+  x: 100%-8;
+	y: 50%-15;
+  fill: yellow;
+	opacity: 0.8;
+}
+
+#clockTextPM {
+  font-size: 30;
+  font-family: Fabrikat-Bold;
+  text-length: 2;
+  text-anchor: end;
+  x: 100%-8;
+	y: 50%+25;
+  fill: yellow;
+	opacity: 0.8;
+}
+
 #dateText {
   font-size: 60;
   font-family: Tungsten-Medium;
