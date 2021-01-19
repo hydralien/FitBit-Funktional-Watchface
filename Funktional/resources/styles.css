@@ -1,136 +1,154 @@
 .background {
-  viewport-fill: black;
+    viewport-fill: black;
 }
 
 #clockText {
-  font-size: 100;
-  font-family: Fabrikat-Bold;
-  text-length: 32;
-  text-anchor: middle;
-  x: 50%;
-  y: 50%+30;
-  fill: white;
+    font-size: 100;
+    font-family: Fabrikat-Bold;
+    text-length: 32;
+    text-anchor: middle;
+    x: 50%;
+    y: 50%+30;
+    fill: white;
 }
 
 #clockTextAM {
-  font-size: 30;
-  font-family: Fabrikat-Bold;
-  text-length: 2;
-  text-anchor: end;
-  x: 100%-8;
-	y: 50%-15;
-  fill: yellow;
-	opacity: 0.8;
+    font-size: 30;
+    font-family: Fabrikat-Bold;
+    text-length: 2;
+    text-anchor: end;
+    x: 100%-8;
+    y: 50%-15;
+    fill: yellow;
+    opacity: 0.8;
 }
 
 #clockTextPM {
-  font-size: 30;
-  font-family: Fabrikat-Bold;
-  text-length: 2;
-  text-anchor: end;
-  x: 100%-8;
-	y: 50%+25;
-  fill: yellow;
-	opacity: 0.8;
+    font-size: 30;
+    font-family: Fabrikat-Bold;
+    text-length: 2;
+    text-anchor: end;
+    x: 100%-8;
+    y: 50%+25;
+    fill: yellow;
+    opacity: 0.8;
 }
 
 #dateText {
-  font-size: 60;
-  font-family: Tungsten-Medium;
-  text-length: 50;
-  text-anchor: middle;
-  x: 50%;
-  y: 50%+90;
-  fill: chartreuse;
-	opacity: 0.8;
+    font-size: 60;
+    font-family: Tungsten-Medium;
+    text-length: 50;
+    text-anchor: middle;
+    x: 50%;
+    y: 50%+90;
+    fill: chartreuse;
+    opacity: 0.8;
 }
 
 #weekText {
-  font-size: 60;
-  font-family: Tungsten-Medium;
-  text-length: 50;
-  text-anchor: middle;
-  x: 50%;
-  y: 50%-60;
-  fill: chartreuse;
-	opacity: 0.8;
+    font-size: 60;
+    font-family: Tungsten-Medium;
+    text-length: 50;
+    text-anchor: middle;
+    x: 50%;
+    y: 50%-60;
+    fill: chartreuse;
+    opacity: 0.8;
 }
 
 .stats {
-  font-size: 30;
-  font-family: Fabrikat-Bold;
-  fill: grey;
-	text-length: 10;
+    font-size: 30;
+    font-family: Fabrikat-Bold;
+    fill: grey;
+    text-length: 10;
 }
 
 .icon {
-	width: 24;
-	height: 24;
+    width: 24;
+    height: 24;
 }
 
 #heartRateText {
-  x: 100%-30;
-  y: 30;
-	text-anchor: end;
+    x: 100%-30;
+    y: 30;
+    text-anchor: end;
 }
 
 #heartRateIcon {
-	x: 100%-30;
-	y: 7;
-	fill: red;
-	opacity: 0.7;
+    x: 100%-30;
+    y: 7;
+    fill: red;
+    opacity: 0.7;
 }
 
 #batteryText {
-  x: 50%;
-  y: 30;
-	text-anchor: middle;
-	color: #dddddd;
+    x: 50%;
+    y: 30;
+    text-anchor: middle;
+    fill: #dddddd;
 }
 
 #activeText {
-  x: 30;
-  y: 30;
-	text-anchor: start;
+    x: 30;
+    y: 30;
+    text-anchor: start;
 }
 
 #activeIcon {
-	x: 5;
-	y: 7;
-	fill: yellow;
-	opacity: 0.7;
+    x: 5;
+    y: 7;
+    fill: yellow;
+    opacity: 0.7;
 }
 
 #floorsText {
-  x: 100%-30;
-  y: 100%-10;	
-	text-anchor: end;
+    x: 100%-30;
+    y: 100%-10;
+    text-anchor: end;
 }
 
 #floorsIcon {
-	x: 100%-30;
-	y: 100%-32;
-	fill: green;
+    x: 100%-30;
+    y: 100%-32;
+    fill: green;
 }
 
 #stepsText {
-  x: 30;
-  y: 100%-10;
-	text-anchor: start;
+    x: 30;
+    y: 100%-10;
+    text-anchor: start;
 }
 
 #stepsIcon {
-	x: 5;
-	y: 100%-32;
-	fill: #7777ff;
-	opacity: 0.7;
+    x: 5;
+    y: 100%-32;
+    fill: #7777ff;
+    opacity: 0.7;
 }
 
 #secondsCircle {
-		width: 100%-15;
-		height: 100%-15;
-		x: 10;
-		y: 10;
-		fill: red;
-		opacity: 0.7;
+    width: 100%-15;
+    height: 100%-15;
+    x: 10;
+    y: 10;
+    fill: red;
+    opacity: 0.7;
+}
+
+#lockTextBg {
+    width: 100%;
+    height: 40;
+    x: 0;
+    y: 100%-40;
+    fill: green;
+    visibility: hidden;
+}
+#lockText {
+    x: 30;
+    y: 100%-10;
+    fill: white;
+    visibility: hidden;
+    text-length: 100;
+    font-size: 30;
+    text-anchor: start;
 }
