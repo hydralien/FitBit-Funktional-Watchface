@@ -1,4 +1,9 @@
 {
+  "name": "funktional",
+  "version": "1.0.1",
+  "description": "Functional watchface",
+  "private": false,
+  "license": "Free",
   "fitbit": {
     "appUUID": "9347ae68-6ec4-478e-9549-e4e9bc24c886",
     "appType": "clockface",

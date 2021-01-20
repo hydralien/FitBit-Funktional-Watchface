@@ -101,6 +101,13 @@
     opacity: 0.7;
 }
 
+#lockIcon {
+    x: 50%-12;
+    y: 100%-30;
+    /*fill: yellow;*/
+    visibility: hidden;
+}
+
 #floorsText {
     x: 100%-30;
     y: 100%-10;
@@ -158,17 +165,29 @@
     width: 60;
     height: 60;
     x: 20;
-    y: 50%-30;
+    y: 50;
 }
 
 #statsHeartRateText {
     fill: white;
-    y: 50%+25;
+    y: 120;
     x: 50%;
     text-anchor: middle;
     font-size: 100;
 }
 
-#stats {
-    visibility: hidden;
+#statsStepsText {
+    x: 50;
+    y: 200;
+    fill: white;
+    font-size: 30;
+    text-length: 50;
+}
+
+#statsPaceText {
+    x: 50;
+    y: 250;
+    fill: white;
+    font-size: 30;
+    text-length: 50;
 }

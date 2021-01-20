@@ -30,7 +30,12 @@
     <g id="stats">
         <image class="icon" id="statsHeartRateIcon" href="hr_solid_64.png"/>
         <text id="statsHeartRateText" class="health"/>
+        <text id="statsStepsText" class="stats"/>
+        <text id="statsPaceText" class="stats"/>
     </g>
-    <rect id="lockTextBg"/>
-    <text id="lockText" class="lock"/>
+    <g id="locking">
+        <image class="icon" id="lockIcon" href="lock_solid_24px.png"/>
+        <rect id="lockTextBg"/>
+        <text id="lockText" class="lock"/>
+    </g>
 </svg>
