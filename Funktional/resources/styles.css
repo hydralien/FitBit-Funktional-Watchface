@@ -143,12 +143,32 @@
     fill: green;
     visibility: hidden;
 }
+
 #lockText {
-    x: 30;
+    x: 50%;
     y: 100%-10;
     fill: white;
     visibility: hidden;
     text-length: 100;
     font-size: 30;
-    text-anchor: start;
+    text-anchor: middle;
+}
+
+#statsHeartRateIcon {
+    width: 60;
+    height: 60;
+    x: 20;
+    y: 50%-30;
+}
+
+#statsHeartRateText {
+    fill: white;
+    y: 50%+25;
+    x: 50%;
+    text-anchor: middle;
+    font-size: 100;
+}
+
+#stats {
+    visibility: hidden;
 }

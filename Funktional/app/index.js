@@ -38,6 +38,8 @@ const lockText = document.getElementById("lockText");
 const lockTextBg = document.getElementById("lockTextBg");
 const globalScape = document.getElementById("globalScape");
 
+const statsHeartRateText = document.getElementById("statsHeartRateText");
+
 const week = {
 	0: 'Sunday',
 	1: 'Monday',
@@ -48,17 +50,33 @@ const week = {
 	6: 'Saturday'
 };
 
-globalScape.onmousedown = (evt) => {
-	lockText.text = "Long tap to unlock";
-	lockText.style.visibility = 'visible';
-	lockTextBg.style.visibility = 'visible';
-}
+const screens = [
+	'clock',
+	'stats'
+];
 
-globalScape.onmouseup = (evt) => {
+let screenIndex = 0;
+
+let screenLocked = false;
+
+let hideLockHint = (evt) => {
 	lockText.style.visibility = 'hidden';
 	lockTextBg.style.visibility = 'hidden';
 }
 
+globalScape.onmousedown = (evt) => {
+	lockText.text = screenLocked ? "Long tap to unlock" : "Long tap to lock";
+	lockText.style.visibility = 'visible';
+	lockTextBg.style.visibility = 'visible';
+	setTimeout(hideLockHint, 2000)
+	if (screenLocked) return;
+
+	const prevScreen = document.getElementById(screens[screenIndex]);
+	screenIndex = (screenIndex + 1) % screens.length;
+	const newScreen = document.getElementById(screens[screenIndex]);
+	prevScreen.style.visibility = 'hidden';
+	newScreen.style.visibility = 'visible';
+}
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
@@ -92,6 +110,8 @@ clock.ontick = (evt) => {
 	let monthNo = util.zeroPad(thisDay.getMonth()+1);
 	let yearNo = thisDay.getYear() + 1900;
 
+	statsHeartRateText.text = heartRate || '--';
+
 	clockText.text = `${hours}:${mins}`;//:${secs}`;
 	dateText.text = `${yearNo}-${monthNo}-${dayNo}`;
 	weekText.text = week[thisDay.getDay()];
@@ -100,7 +120,7 @@ clock.ontick = (evt) => {
 	stepsText.text = today.local ? (today.local.steps || 0) : 0;
 	activeText.text = today.local ? (today.local.activeMinutes || 0) : 0;
 	//let batteryLevel = parseInt(battery.chargeLevel);
-	batteryText.text = battery.chargeLevel + '%';
+	batteryText.text = `${battery.chargeLevel}%`;
 
 	let sweepAngle = 10;
 	let startAngle = parseInt(360/60 * seconds) - parseInt(sweepAngle/2);

@@ -1,2 +1,5 @@
 Funktional/package-lock.json
 Funktional/node_modules
+Funktional/build
+.idea
+.DS_Store

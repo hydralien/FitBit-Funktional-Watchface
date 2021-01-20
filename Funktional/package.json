@@ -18,15 +18,13 @@
     "i18n": {
       "en": {
         "name": "Funktional",
-        "description": "Functional watchface",
-        "repository": "https://github.com/hydralien/FitBit-Funktional-Watchface",
-        "licanse": "MIT"
+        "description": "Functional watchface"
       }
     }
   },
   "devDependencies": {
-    "@fitbit/sdk": "~4.2.0",
-    "@fitbit/sdk-cli": "^1.7.0"
+    "@fitbit/sdk": "~4.2.1",
+    "@fitbit/sdk-cli": "~1.7.3"
   },
   "scripts": {
     "build": "fitbit-build"

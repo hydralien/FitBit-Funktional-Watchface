@@ -1,28 +1,36 @@
 <svg id="globalScape" class="background">
-  <gradientRect x="0" y="0" width="100%" height="100%"
-    gradient-type="bilinear"
-    gradient-x1="30" gradient-y1="30"
-    gradient-x2="100%-60" gradient-y2="100%-60"
-    gradient-color1="black"
-    gradient-color2="#222222"
-    gradient-color3="#333333"
-    gradient-color4="#111111" />
-  <arc id="secondsCircle"
-    arc-width="15" start-angle="0" sweep-angle="0" />
-  <text id="clockText" />
-    <text id="clockTextAM">AM</text>
-    <text id="clockTextPM">PM</text>
-  <text id="dateText" />
-  <text id="weekText" />
-  <image class="icon" id="activeIcon" href="stat_am_solid_24px.png" />
-  <text id="activeText" class="stats" />
-  <image class="icon" id="heartRateIcon" href="stat_hr_solid_24px.png" />
-  <text id="heartRateText" class="stats" />
-  <image class="icon" id="stepsIcon" href="stat_steps_solid_24px.png" />
-  <text id="stepsText" class="stats" />
-  <image class="icon" id="floorsIcon" href="stat_floors_solid_24px.png" />
-  <text id="floorsText" class="stats" />
-  <text id="batteryText" class="stats" text-length="4" />
-  <rect id="lockTextBg"/>
-  <text id="lockText" class="lock" />
+    <gradientRect x="0" y="0" width="100%" height="100%"
+                  gradient-type="bilinear"
+                  gradient-x1="30" gradient-y1="30"
+                  gradient-x2="100%-60" gradient-y2="100%-60"
+                  gradient-color1="black"
+                  gradient-color2="#222222"
+                  gradient-color3="#333333"
+                  gradient-color4="#111111"/>
+    <text id="batteryText" class="stats" text-length="4"/>
+    <g id="clock">
+        <arc id="secondsCircle"
+             arc-width="15" start-angle="0" sweep-angle="0"/>
+
+        <text id="clockText"/>
+        <text id="clockTextAM">AM</text>
+        <text id="clockTextPM">PM</text>
+        <text id="dateText"/>
+        <text id="weekText"/>
+
+        <image class="icon" id="activeIcon" href="stat_am_solid_24px.png"/>
+        <text id="activeText" class="stats"/>
+        <image class="icon" id="heartRateIcon" href="stat_hr_solid_24px.png"/>
+        <text id="heartRateText" class="stats"/>
+        <image class="icon" id="stepsIcon" href="stat_steps_solid_24px.png"/>
+        <text id="stepsText" class="stats"/>
+        <image class="icon" id="floorsIcon" href="stat_floors_solid_24px.png"/>
+        <text id="floorsText" class="stats"/>
+    </g>
+    <g id="stats">
+        <image class="icon" id="statsHeartRateIcon" href="hr_solid_64.png"/>
+        <text id="statsHeartRateText" class="health"/>
+    </g>
+    <rect id="lockTextBg"/>
+    <text id="lockText" class="lock"/>
 </svg>
