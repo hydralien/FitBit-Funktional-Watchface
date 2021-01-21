@@ -1,0 +1,59 @@
+<svg id="globalScape" class="background">
+    <gradientRect x="0" y="0" width="100%" height="100%"
+                  gradient-type="bilinear"
+                  gradient-x1="30" gradient-y1="30"
+                  gradient-x2="100%-60" gradient-y2="100%-60"
+                  gradient-color1="black"
+                  gradient-color2="#222222"
+                  gradient-color3="#333333"
+                  gradient-color4="#111111"/>
+    <text id="batteryText" class="stats" text-length="4"/>
+    <g id="clock">
+        <arc id="secondsCircle"
+             arc-width="15" start-angle="0" sweep-angle="0"/>
+
+        <text id="clockText"/>
+        <text id="clockTextAM">AM</text>
+        <text id="clockTextPM">PM</text>
+        <text id="dateText"/>
+        <text id="weekText"/>
+
+        <g id="activeGroup" transform="translate(20,20)"> <!-- transform="translate(0,40) rotate(-30)"> -->
+            <image class="icon" id="activeIcon" href="stat_am_solid_24px.png"/>
+            <text id="activeText" class="stats"/>
+        </g>
+        <g id="hrGroup" transform="translate(-20,20)"> <!-- transform="translate(80,-150) rotate(30)"> -->
+            <image class="icon" id="heartRateIcon" href="stat_hr_solid_24px.png"/>
+            <text id="heartRateText" class="stats"/>
+        </g>
+        <g id="stepsGroup" transform="translate(20,-20)"> <!-- transform="translate(170,-5) rotate(30)"> -->
+            <image class="icon" id="stepsIcon" href="stat_steps_solid_24px.png"/>
+            <text id="stepsText" class="stats"/>
+        </g>
+        <g id="floorGroup" transform="translate(-20,-20)"> <!-- transform="translate(-130,170) rotate(-30)"> -->
+            <image class="icon" id="floorsIcon" href="stat_floors_solid_24px.png"/>
+            <text id="floorsText" class="stats"/>
+        </g>
+    </g>
+    <g id="stats">
+        <text id="statsHeartRateIconTextL1" class="healthLabel">Heart</text>
+        <text id="statsHeartRateIconTextL2" class="healthLabel">Rate</text>
+        <text id="statsHeartRateText" class="health"/>
+
+        <text id="statsPaceLabel" class="healthLabel">Pace</text>
+        <text id="statsPaceText" class="health"/>
+
+        <text id="statsStepsLabel" class="healthLabel">Steps</text>
+        <text id="statsStepsText" class="health"/>
+
+        <text id="statsFloorsLabel" class="healthLabel">Floors</text>
+        <text id="statsFloorsText" class="health"/>
+
+        <text id="statsTime" class="stats-time"/>
+    </g>
+    <g id="locking">
+        <image class="icon" id="lockIcon" href="lock_solid_24px.png"/>
+        <rect id="lockTextBg"/>
+        <text id="lockText" class="lock"/>
+    </g>
+</svg>
