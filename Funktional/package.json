@@ -1,4 +1,9 @@
 {
+  "name": "funktional",
+  "version": "1.0.1",
+  "description": "Functional watchface",
+  "private": false,
+  "license": "Free",
   "fitbit": {
     "appUUID": "9347ae68-6ec4-478e-9549-e4e9bc24c886",
     "appType": "clockface",
@@ -11,19 +16,23 @@
     ],
     "buildTargets": [
       "higgs",
-      "meson"
+      "meson",
+      "gemini",
+      "mira"
     ],
     "i18n": {
       "en": {
-        "name": "Funktional"
+        "name": "Funktional",
+        "description": "Functional watchface"
       }
     }
   },
   "devDependencies": {
-    "@fitbit/sdk": "~1.0.0",
-    "@fitbit/sdk-cli": "^1.0.0"
+    "@fitbit/sdk": "~4.2.1",
+    "@fitbit/sdk-cli": "~1.7.3"
   },
   "scripts": {
     "build": "fitbit-build"
-  }
+  },
+  "dependencies": {}
 }
