@@ -85,7 +85,6 @@
     x: 50%;
     y: 30;
     text-anchor: middle;
-    fill: #dddddd;
 }
 
 #activeText {
@@ -163,7 +162,7 @@
 
 .healthLabel {
     text-anchor: end;
-    x: 120;
+    x: 50%-30;
     font-weight: bold;
     text-length: 6;
     font-size: 40;
@@ -198,7 +197,7 @@
 
 .health {
     fill: white;
-    x: 130;
+    x: 50%-20;
     text-anchor: start;
     font-size: 40;
     text-length: 10;

@@ -200,34 +200,32 @@ clock.ontick = (evt) => {
 	if (screens[screenIndex] === 'stats') {
 		statsTime.text = `${hours}:${mins}:${secs}${clockPad}`;
 
-		if (me.permissions.granted("access_activity")) {
-			const minuteRecords = minuteHistory.query({limit: 1});
-			const lastMinute = minuteRecords[0];
+		const minuteRecords = me.permissions.granted("access_activity") ? minuteHistory.query({limit: 1}) : [];
+		const lastMinute = minuteRecords.length > 0 ? minuteRecords[0] : {};
 
-			const isImperial = units ? units.distance === 'us' : preferences.clockDisplay === "12h";
-			statsHeartRateText.text = heartRate || '--';
+		const isImperial = units ? units.distance === 'us' : preferences.clockDisplay === "12h";
+		statsHeartRateText.text = heartRate || '--';
 
-			const distKm = (lastMinute.distance || 0) / 1000;
-			let pace = '0:00';
+		const distKm = (lastMinute.distance || 0) / 1000;
+		let pace = '0:00';
 
-			if (distKm > 0) {
-				let paceNum = 0;
-				if (isImperial) {
-					const distMi = distKm / 1.609344;
-					paceNum = 1 / distMi;
-				} else {
-					paceNum = 1 / distKm;
-				}
-
-				const paceMin = (Math.floor(paceNum) + (paceNum % 1) * 0.6).toFixed(2);
-				pace = paceMin.toString().replace('.', ':');
+		if (distKm > 0) {
+			let paceNum = 0;
+			if (isImperial) {
+				const distMi = distKm / 1.609344;
+				paceNum = 1 / distMi;
+			} else {
+				paceNum = 1 / distKm;
 			}
-			const paceMeasure = isImperial ? '/mi.' : '/km';
 
-			statsPaceText.text = `${pace}${paceMeasure}`;
-			statsStepsText.text = today.local.steps || 0;
-			statsFloorsText.text = today.local.elevationGain || 0;
+			const paceMin = (Math.floor(paceNum) + (paceNum % 1) * 0.6).toFixed(2);
+			pace = paceMin.toString().replace('.', ':');
 		}
+		const paceMeasure = isImperial ? '/mi.' : '/km';
+
+		statsPaceText.text = `${pace}${paceMeasure}`;
+		statsStepsText.text = today.local ? (today.local.steps || 0) : 0;
+		statsFloorsText.text = today.local ? (today.local.elevationGain || 0) : 0;
 	}
 
 	if (screens[screenIndex] === 'clock') {
@@ -237,7 +235,7 @@ clock.ontick = (evt) => {
 		heartRateText.text = heartRate || '--';
 		floorsText.text = today.local ? (today.local.elevationGain || 0) : 0;
 		stepsText.text = today.local ? (today.local.steps || 0) : 0;
-		activeText.text = today.local ? (today.local.activeZoneMinutes.total || 0) : 0;
+		activeText.text = today.local ? (today.local.activeMinutes || 0) : 0;
 
 		let sweepAngle = 10;
 		let startAngle = parseInt(360 / 60 * seconds) - parseInt(sweepAngle / 2);

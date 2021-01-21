@@ -1,231 +1,230 @@
 .background {
-  viewport-fill: black;
+    viewport-fill: black;
 }
 
 #clockText {
-  font-size: 100;
-  font-family: Fabrikat-Bold;
-  text-length: 32;
-  text-anchor: middle;
-  x: 50%;
-  y: 50%+30;
-  fill: white;
+    font-size: 100;
+    font-family: Fabrikat-Bold;
+    text-length: 32;
+    text-anchor: middle;
+    x: 50%;
+    y: 50%+30;
+    fill: white;
 }
 
 #clockTextAM {
-  font-size: 30;
-  font-family: Fabrikat-Bold;
-  text-length: 2;
-  text-anchor: end;
-  x: 100%-8;
-  y: 50%-15;
-  fill: yellow;
-  opacity: 0.8;
+    font-size: 30;
+    font-family: Fabrikat-Bold;
+    text-length: 2;
+    text-anchor: end;
+    x: 100%-8;
+    y: 50%-15;
+    fill: yellow;
+    opacity: 0.8;
 }
 
 #clockTextPM {
-  font-size: 30;
-  font-family: Fabrikat-Bold;
-  text-length: 2;
-  text-anchor: end;
-  x: 100%-8;
-  y: 50%+25;
-  fill: yellow;
-  opacity: 0.8;
+    font-size: 30;
+    font-family: Fabrikat-Bold;
+    text-length: 2;
+    text-anchor: end;
+    x: 100%-8;
+    y: 50%+25;
+    fill: yellow;
+    opacity: 0.8;
 }
 
 #dateText {
-  font-size: 60;
-  font-family: Tungsten-Medium;
-  text-length: 50;
-  text-anchor: middle;
-  x: 50%;
-  y: 50%+90;
-  fill: chartreuse;
-  opacity: 0.8;
+    font-size: 60;
+    font-family: Tungsten-Medium;
+    text-length: 50;
+    text-anchor: middle;
+    x: 50%;
+    y: 50%+90;
+    fill: chartreuse;
+    opacity: 0.8;
 }
 
 #weekText {
-  font-size: 60;
-  font-family: Tungsten-Medium;
-  text-length: 50;
-  text-anchor: middle;
-  x: 50%;
-  y: 50%-60;
-  fill: chartreuse;
-  opacity: 0.8;
+    font-size: 60;
+    font-family: Tungsten-Medium;
+    text-length: 50;
+    text-anchor: middle;
+    x: 50%;
+    y: 50%-60;
+    fill: chartreuse;
+    opacity: 0.8;
 }
 
 .stats {
-  font-size: 30;
-  font-family: Fabrikat-Bold;
-  fill: grey;
-  text-length: 10;
+    font-size: 30;
+    font-family: Fabrikat-Bold;
+    fill: grey;
+    text-length: 10;
 }
 
 .icon {
-  width: 24;
-  height: 24;
+    width: 24;
+    height: 24;
 }
 
 #heartRateText {
-  x: 100%-30;
-  y: 30;
-  text-anchor: end;
+    x: 100%-30;
+    y: 30;
+    text-anchor: end;
 }
 
 #heartRateIcon {
-  x: 100%-30;
-  y: 7;
-  fill: red;
-  opacity: 0.7;
+    x: 100%-30;
+    y: 7;
+    fill: red;
+    opacity: 0.7;
 }
 
 #batteryText {
-  x: 50%;
-  y: 30;
-  text-anchor: middle;
-  fill: #dddddd;
+    x: 50%;
+    y: 30;
+    text-anchor: middle;
 }
 
 #activeText {
-  x: 30;
-  y: 30;
-  text-anchor: start;
+    x: 30;
+    y: 30;
+    text-anchor: start;
 }
 
 #activeIcon {
-  x: 5;
-  y: 7;
-  fill: yellow;
-  opacity: 0.7;
+    x: 5;
+    y: 7;
+    fill: yellow;
+    opacity: 0.7;
 }
 
 #lockIcon {
-  x: 50%-12;
-  y: 100%-20;
-  /*fill: yellow;*/
-  visibility: hidden;
+    x: 50%-12;
+    y: 100%-20;
+    /*fill: yellow;*/
+    visibility: hidden;
 }
 
 #floorsText {
-  x: 100%-30;
-  y: 100%-10;
-  text-anchor: end;
+    x: 100%-30;
+    y: 100%-10;
+    text-anchor: end;
 }
 
 #floorsIcon {
-  x: 100%-30;
-  y: 100%-32;
-  fill: green;
+    x: 100%-30;
+    y: 100%-32;
+    fill: green;
 }
 
 #stepsText {
-  x: 30;
-  y: 100%-10;
-  text-anchor: start;
+    x: 30;
+    y: 100%-10;
+    text-anchor: start;
 }
 
 #stepsIcon {
-  x: 5;
-  y: 100%-32;
-  fill: #7777ff;
-  opacity: 0.7;
+    x: 5;
+    y: 100%-32;
+    fill: #7777ff;
+    opacity: 0.7;
 }
 
 #secondsCircle {
-  width: 100%-15;
-  height: 100%-15;
-  x: 10;
-  y: 10;
-  fill: red;
-  opacity: 0.7;
+    width: 100%-15;
+    height: 100%-15;
+    x: 10;
+    y: 10;
+    fill: red;
+    opacity: 0.7;
 }
 
 #lockTextBg {
-  width: 100%;
-  height: 40;
-  x: 0;
-  y: 100%-40;
-  fill: green;
-  visibility: hidden;
+    width: 100%;
+    height: 40;
+    x: 0;
+    y: 100%-40;
+    fill: green;
+    visibility: hidden;
 }
 
 #lockText {
-  x: 50%;
-  y: 100%-15;
-  fill: white;
-  visibility: hidden;
-  text-length: 100;
-  font-size: 30;
-  text-anchor: middle;
+    x: 50%;
+    y: 100%-15;
+    fill: white;
+    visibility: hidden;
+    text-length: 100;
+    font-size: 30;
+    text-anchor: middle;
 }
 
 .healthLabel {
-  text-anchor: end;
-  x: 50%-30;
-  font-weight: bold;
-  text-length: 6;
-  font-size: 40;
+    text-anchor: end;
+    x: 50%-30;
+    font-weight: bold;
+    text-length: 6;
+    font-size: 40;
 }
 
 #statsHeartRateIconTextL1 {
-  fill: red;
-  y: 77;
-  font-size: 40;
+    fill: red;
+    y: 77;
+    font-size: 40;
 }
 
 #statsHeartRateIconTextL2 {
-  fill: red;
-  y: 112;
-  font-size: 40;
+    fill: red;
+    y: 112;
+    font-size: 40;
 }
 
 #statsPaceLabel {
-  y: 165;
-  fill: yellow;
+    y: 160;
+    fill: yellow;
 }
 
 #statsStepsLabel {
-  y: 210;
-  fill: #7777ff;
+    y: 200;
+    fill: #7777ff;
 }
 
 #statsFloorsLabel {
-  y: 255;
-  fill: green;
+    y: 240;
+    fill: green;
 }
 
 .health {
-  fill: white;
-  x: 50%-20;
-  text-anchor: start;
-  font-size: 40;
-  text-length: 10;
+    fill: white;
+    x: 50%-20;
+    text-anchor: start;
+    font-size: 40;
+    text-length: 10;
 }
 
 #statsHeartRateText {
-  y: 115;
-  font-size: 100;
+    y: 115;
+    font-size: 100;
 }
 
 #statsPaceText {
-  y: 165;
+    y: 160;
 }
 
 #statsStepsText {
-  y: 210;
+    y: 200;
 }
 
 #statsFloorsText {
-  y: 255;
+    y: 240;
 }
 
 #statsTime {
-  text-length: 20;
-  fill: #dddddd;
-  x: 50%;
-  y: 100%-30;
-  text-anchor: middle;
-  font-size: 35;
+    text-length: 20;
+    fill: #dddddd;
+    x: 50%;
+    y: 280;
+    text-anchor: middle;
+    font-size: 33;
 }
