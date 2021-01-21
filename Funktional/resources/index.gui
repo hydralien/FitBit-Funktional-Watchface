@@ -28,10 +28,20 @@
         <text id="floorsText" class="stats"/>
     </g>
     <g id="stats">
-        <image class="icon" id="statsHeartRateIcon" href="hr_solid_64.png"/>
+        <text id="statsHeartRateIconTextL1" class="healthLabel">Heart</text>
+        <text id="statsHeartRateIconTextL2" class="healthLabel">Rate</text>
         <text id="statsHeartRateText" class="health"/>
-        <text id="statsStepsText" class="stats"/>
-        <text id="statsPaceText" class="stats"/>
+
+        <text id="statsPaceLabel" class="healthLabel">Pace</text>
+        <text id="statsPaceText" class="health"/>
+
+        <text id="statsStepsLabel" class="healthLabel">Steps</text>
+        <text id="statsStepsText" class="health"/>
+
+        <text id="statsFloorsLabel" class="healthLabel">Floors</text>
+        <text id="statsFloorsText" class="health"/>
+
+        <text id="statsTime" class="stats-time"/>
     </g>
     <g id="locking">
         <image class="icon" id="lockIcon" href="lock_solid_24px.png"/>

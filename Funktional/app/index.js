@@ -1,12 +1,13 @@
 import clock from "clock";
 import document from "document";
-import { preferences } from "user-settings";
+import { preferences, units } from "user-settings";
 import { HeartRateSensor } from "heart-rate";
 import { me } from "appbit";
 import { today } from "user-activity";
 import { battery } from "power";
 import * as util from "../common/utils";
 import * as fs from "fs";
+import { vibration } from "haptics";
 
 const SETTINGS_TYPE = "cbor";
 const SETTINGS_FILE = "settings.cbor";
@@ -48,6 +49,9 @@ const globalScape = document.getElementById("globalScape");
 const statsHeartRateText = document.getElementById("statsHeartRateText");
 const statsPaceText = document.getElementById("statsPaceText");
 const statsStepsText = document.getElementById("statsStepsText");
+const statsFloorsText = document.getElementById("statsFloorsText");
+
+const statsTime = document.getElementById("statsTime");
 
 const week = {
 	0: 'Sunday',
@@ -102,10 +106,11 @@ let lockToggle = (evt) => {
 	}
 	lockIcon.style.visibility = screenLocked ? 'visible' : 'hidden';
 	settings[LOCK_STATE] = screenLocked;
+	vibration.start("bump");
+	setTimeout(vibration.stop, 100);
 };
 
 globalScape.onload = () => {
-	console.log("ONLYLODE")
 	screens.forEach((screen, index) => {
 		const screenElement = document.getElementById(screen);
 		if (index === screenIndex) screenElement.style.visibility = 'visible'
@@ -114,12 +119,12 @@ globalScape.onload = () => {
 	lockIcon.style.visibility = screenLocked ? 'visible' : 'hidden';
 };
 
+let downX = 0;
+let downY = 0;
+
 globalScape.onmousedown = (evt) => {
-	lockText.text = screenLocked ? "Long tap to unlock" : "Long tap to lock";
-	lockText.style.visibility = 'visible';
-	lockTextBg.style.visibility = 'visible';
-	clearTimeout(lockHintTimer);
-	lockHintTimer = setTimeout(hideLockHint, 2000);
+	downX = evt.screenX
+	downY = evt.screenY
 	clearTimeout(lockTimer);
 	lockTimer = setTimeout(lockToggle, 2000);
 };
@@ -128,29 +133,51 @@ globalScape.onmouseup = (evt) => {
 	clearTimeout(lockTimer);
 };
 
+globalScape.onmousemove = (evt) => {
+	// console.log("XXXX", downX, evt.screenX - downX)
+	// console.log("YYYY", downY, evt.screenY - downY)
+	if (Math.abs(evt.screenX - downX) > 20 || Math.abs(evt.screenY - downY) > 20) {
+		clearTimeout(lockTimer);
+	}
+}
+
 globalScape.onclick = (evt) => {
+	lockText.text = screenLocked ? "Long tap to unlock" : "Long tap to lock";
+	lockText.style.visibility = 'visible';
+	lockTextBg.style.visibility = 'visible';
+
+	clearTimeout(lockHintTimer);
+	lockHintTimer = setTimeout(hideLockHint, 2000);
+
 	if (screenLocked) return;
+
 	const prevScreen = document.getElementById(screens[screenIndex]);
 	screenIndex = (screenIndex + 1) % screens.length;
 	const newScreen = document.getElementById(screens[screenIndex]);
+
 	prevScreen.style.visibility = 'hidden';
 	newScreen.style.visibility = 'visible';
+
 	settings[SCREEN_INDEX] = screenIndex;
+	clock.ontick(evt);
 }
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
-	let thisDay = evt.date;
+	let thisDay = evt.date || new Date();
 	let hours = thisDay.getHours();
 	let minutes = thisDay.getMinutes();
 	let seconds = thisDay.getSeconds();
 
+	let clockPad = ''
 	if (preferences.clockDisplay === "12h") {
 		// 12h format
 		if (hours < 12) {
+			clockPad = ' AM';
 			clockPM.style.display = "none";
 			clockAM.style.display = "inline";
 		} else {
+			clockPad = ' PM';
 			clockPM.style.display = "inline";
 			clockAM.style.display = "none";
 		}
@@ -170,18 +197,40 @@ clock.ontick = (evt) => {
 	let monthNo = util.zeroPad(thisDay.getMonth()+1);
 	let yearNo = thisDay.getYear() + 1900;
 
-	// if (screens[screenIndex] === 'stats') {
-		statsHeartRateText.text = heartRate || '--';
-		if (me.permissions.granted("access_activity")) {
-			const minuteRecords = minuteHistory.query({ limit: 1 });
-			const lastMinute = minuteRecords[0];
-			// console.log("MIRO", minuteRecords.length, lastMinute.distance, lastMinute.steps);
-			statsStepsText.text = `Steps: ${today.local.steps}`;
-			statsPaceText.text = `Dist: ${lastMinute.distance}`;
-		}
-	// }
+	if (screens[screenIndex] === 'stats') {
+		statsTime.text = `${hours}:${mins}:${secs}${clockPad}`;
 
-	// if (screens[screenIndex] === 'clock') {
+		if (me.permissions.granted("access_activity")) {
+			const minuteRecords = minuteHistory.query({limit: 1});
+			const lastMinute = minuteRecords[0];
+
+			const isImperial = units ? units.distance === 'us' : preferences.clockDisplay === "12h";
+			statsHeartRateText.text = heartRate || '--';
+
+			const distKm = (lastMinute.distance || 0) / 1000;
+			let pace = '0:00';
+
+			if (distKm > 0) {
+				let paceNum = 0;
+				if (isImperial) {
+					const distMi = distKm / 1.609344;
+					paceNum = 1 / distMi;
+				} else {
+					paceNum = 1 / distKm;
+				}
+
+				const paceMin = (Math.floor(paceNum) + (paceNum % 1) * 0.6).toFixed(2);
+				pace = paceMin.toString().replace('.', ':');
+			}
+			const paceMeasure = isImperial ? '/mi.' : '/km';
+
+			statsPaceText.text = `${pace}${paceMeasure}`;
+			statsStepsText.text = today.local.steps || 0;
+			statsFloorsText.text = today.local.elevationGain || 0;
+		}
+	}
+
+	if (screens[screenIndex] === 'clock') {
 		clockText.text = `${hours}:${mins}`;//:${secs}`;
 		dateText.text = `${yearNo}-${monthNo}-${dayNo}`;
 		weekText.text = week[thisDay.getDay()];
@@ -189,8 +238,6 @@ clock.ontick = (evt) => {
 		floorsText.text = today.local ? (today.local.elevationGain || 0) : 0;
 		stepsText.text = today.local ? (today.local.steps || 0) : 0;
 		activeText.text = today.local ? (today.local.activeMinutes || 0) : 0;
-		//let batteryLevel = parseInt(battery.chargeLevel);
-		batteryText.text = `${battery.chargeLevel}%`;
 
 		let sweepAngle = 10;
 		let startAngle = parseInt(360 / 60 * seconds) - parseInt(sweepAngle / 2);
@@ -200,5 +247,8 @@ clock.ontick = (evt) => {
 
 		sMeter.startAngle = startAngle;
 		sMeter.sweepAngle = sweepAngle;
-	// }
+	}
+
+	//let batteryLevel = parseInt(battery.chargeLevel);
+	batteryText.text = `${battery.chargeLevel}%`;
 }
