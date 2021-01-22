@@ -1,13 +1,18 @@
 import clock from "clock";
 import document from "document";
 import { preferences, units } from "user-settings";
+import { user } from "user-profile";
 import { HeartRateSensor } from "heart-rate";
+import { minuteHistory, today } from "user-activity";
 import { me } from "appbit";
 import { today } from "user-activity";
 import { battery } from "power";
 import * as util from "../common/utils";
 import * as fs from "fs";
 import { vibration } from "haptics";
+import { zoneColors, getZone } from './zones';
+import { Stats } from './stats';
+require('./devices');
 
 const SETTINGS_TYPE = "cbor";
 const SETTINGS_FILE = "settings.cbor";
@@ -21,8 +26,6 @@ if (me.permissions.granted("access_heart_rate")) {
 	}
 	hrm.start();
 }
-
-import { minuteHistory, today } from "user-activity";
 
 // Update the clock every minute
 clock.granularity = "seconds";
@@ -47,6 +50,7 @@ const lockIcon = document.getElementById("lockIcon");
 const globalScape = document.getElementById("globalScape");
 
 const statsHeartRateText = document.getElementById("statsHeartRateText");
+const statsZoneText = document.getElementById("statsZoneText");
 const statsPaceText = document.getElementById("statsPaceText");
 const statsStepsText = document.getElementById("statsStepsText");
 const statsFloorsText = document.getElementById("statsFloorsText");
@@ -67,6 +71,10 @@ const screens = [
 	'clock',
 	'stats'
 ];
+
+const isImperial = units ? units.distance === 'us' : preferences.clockDisplay === "12h";
+
+const activityStats = new Stats(isImperial);
 
 function loadSettings() {
 	try {
@@ -200,32 +208,32 @@ clock.ontick = (evt) => {
 	if (screens[screenIndex] === 'stats') {
 		statsTime.text = `${hours}:${mins}:${secs}${clockPad}`;
 
-		const minuteRecords = me.permissions.granted("access_activity") ? minuteHistory.query({limit: 1}) : [];
-		const lastMinute = minuteRecords.length > 0 ? minuteRecords[0] : {};
+		const aStats = activityStats.getStats();
 
-		const isImperial = units ? units.distance === 'us' : preferences.clockDisplay === "12h";
-		statsHeartRateText.text = heartRate || '--';
-
-		const distKm = (lastMinute.distance || 0) / 1000;
-		let pace = '0:00';
-
-		if (distKm > 0) {
-			let paceNum = 0;
-			if (isImperial) {
-				const distMi = distKm / 1.609344;
-				paceNum = 1 / distMi;
-			} else {
-				paceNum = 1 / distKm;
+		if (heartRate) {
+			let userAge = 30;
+			let maxHeartRate = undefined;
+			if (me.permissions.granted("access_user_profile")) {
+				userAge = user.age;
+				maxHeartRate = user.maxHeartRate;
 			}
 
-			const paceMin = (Math.floor(paceNum) + (paceNum % 1) * 0.6).toFixed(2);
-			pace = paceMin.toString().replace('.', ':');
-		}
-		const paceMeasure = isImperial ? '/mi.' : '/km';
+			const hrZone = getZone(heartRate, userAge, maxHeartRate);
+			const hrZoneColor = zoneColors[hrZone];
 
-		statsPaceText.text = `${pace}${paceMeasure}`;
-		statsStepsText.text = today.local ? (today.local.steps || 0) : 0;
-		statsFloorsText.text = today.local ? (today.local.elevationGain || 0) : 0;
+			statsZoneText.style.fill = hrZoneColor;
+			statsHeartRateText.style.fill = hrZoneColor;
+			statsHeartRateText.text = heartRate;
+			statsZoneText.text = hrZone;
+		} else {
+			statsHeartRateText.text = '--';
+		}
+
+		const paceMeasure = isImperial ? 'mi.' : 'km';
+
+		statsPaceText.text = `${aStats.oneMinPace}/${paceMeasure}`;
+		statsStepsText.text =  `${aStats.fiveMinDistance} ${paceMeasure}`;
+		statsFloorsText.text = `${aStats.fiveMinElevation} floors`;
 	}
 
 	if (screens[screenIndex] === 'clock') {
@@ -235,7 +243,8 @@ clock.ontick = (evt) => {
 		heartRateText.text = heartRate || '--';
 		floorsText.text = today.local ? (today.local.elevationGain || 0) : 0;
 		stepsText.text = today.local ? (today.local.steps || 0) : 0;
-		activeText.text = today.local ? (today.local.activeMinutes || 0) : 0;
+
+		activeText.text = today.local && today.local.activeZoneMinutes ? (today.local.activeZoneMinutes.total || 0) : 0;
 
 		let sweepAngle = 10;
 		let startAngle = parseInt(360 / 60 * seconds) - parseInt(sweepAngle / 2);
@@ -245,8 +254,7 @@ clock.ontick = (evt) => {
 
 		sMeter.startAngle = startAngle;
 		sMeter.sweepAngle = sweepAngle;
-	}
 
-	//let batteryLevel = parseInt(battery.chargeLevel);
-	batteryText.text = `${battery.chargeLevel}%`;
+		batteryText.text = `${battery.chargeLevel}%`;
+	}
 }

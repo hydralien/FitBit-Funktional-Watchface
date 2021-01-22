@@ -8,7 +8,7 @@
     "@fitbit/sdk-cli": "^1.7.3"
   },
   "fitbit": {
-    "appUUID": "3c5bcde6-446e-4183-bd7f-2b57abecf245",
+    "appUUID": "6256fc17-7c85-4566-a75e-384b3c7995f7",
     "appType": "clockface",
     "appDisplayName": "Funktional 2",
     "iconFile": "resources/icon.png",

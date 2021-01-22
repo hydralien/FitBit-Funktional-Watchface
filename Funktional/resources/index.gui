@@ -7,8 +7,9 @@
                   gradient-color2="#222222"
                   gradient-color3="#333333"
                   gradient-color4="#111111"/>
-    <text id="batteryText" class="stats" text-length="4"/>
     <g id="clock">
+        <text id="batteryText" class="stats" text-length="4"/>
+
         <arc id="secondsCircle"
              arc-width="15" start-angle="0" sweep-angle="0"/>
 
@@ -31,14 +32,19 @@
         <text id="statsHeartRateIconTextL1" class="healthLabel">Heart</text>
         <text id="statsHeartRateIconTextL2" class="healthLabel">Rate</text>
         <text id="statsHeartRateText" class="health"/>
+        <text id="statsZoneText" class="health"/>
+
+        <text id="last-minute" class="chapter">last minute:</text>
 
         <text id="statsPaceLabel" class="healthLabel">Pace</text>
         <text id="statsPaceText" class="health"/>
 
-        <text id="statsStepsLabel" class="healthLabel">Steps</text>
+        <text id="last-five-minutes" class="chapter">last 5 minutes:</text>
+
+        <text id="statsStepsLabel" class="healthLabel">Dist.</text>
         <text id="statsStepsText" class="health"/>
 
-        <text id="statsFloorsLabel" class="healthLabel">Floors</text>
+        <text id="statsFloorsLabel" class="healthLabel">Elev.</text>
         <text id="statsFloorsText" class="health"/>
 
         <text id="statsTime" class="stats-time"/>

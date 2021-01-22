@@ -162,21 +162,21 @@
 
 .healthLabel {
     text-anchor: end;
-    x: 50%-30;
+    x: 50%-45;
     font-weight: bold;
     text-length: 6;
-    font-size: 40;
+    font-size: 35;
 }
 
 #statsHeartRateIconTextL1 {
     fill: red;
-    y: 77;
+    y: 42;
     font-size: 40;
 }
 
 #statsHeartRateIconTextL2 {
     fill: red;
-    y: 112;
+    y: 77;
     font-size: 40;
 }
 
@@ -186,26 +186,36 @@
 }
 
 #statsStepsLabel {
-    y: 200;
+    y: 217;
     fill: #7777ff;
+    font-size: 30;
 }
 
 #statsFloorsLabel {
-    y: 240;
+    y: 247;
     fill: green;
+    font-size: 30;
 }
 
 .health {
     fill: white;
-    x: 50%-20;
+    x: 50%-35;
     text-anchor: start;
     font-size: 40;
     text-length: 10;
 }
 
 #statsHeartRateText {
-    y: 115;
+    y: 80;
     font-size: 100;
+}
+
+#statsZoneText {
+    y: 105;
+    x: 50%-20;
+    font-size: 30;
+    font-weight: bold;
+    fill: white;
 }
 
 #statsPaceText {
@@ -213,11 +223,13 @@
 }
 
 #statsStepsText {
-    y: 200;
+    y: 217;
+    font-size: 35;
 }
 
 #statsFloorsText {
-    y: 240;
+    y: 247;
+    font-size: 35;
 }
 
 #statsTime {
@@ -226,5 +238,21 @@
     x: 50%;
     y: 280;
     text-anchor: middle;
-    font-size: 33;
+    font-size: 30;
+}
+
+.chapter {
+    font-size: 20;
+    text-length: 50;
+    fill: lightgray;
+    x: 10;
+    text-anchor: start;
+}
+
+#last-minute {
+    y: 128;
+}
+
+#last-five-minutes {
+    y: 185;
 }
