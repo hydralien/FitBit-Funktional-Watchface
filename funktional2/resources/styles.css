@@ -160,9 +160,11 @@
     text-anchor: middle;
 }
 
+/* LABEL SECTION*/
+
 .healthLabel {
     text-anchor: end;
-    x: 50%-45;
+    x: 50%-55;
     font-weight: bold;
     text-length: 6;
     font-size: 35;
@@ -171,13 +173,11 @@
 #statsHeartRateIconTextL1 {
     fill: red;
     y: 42;
-    font-size: 40;
 }
 
 #statsHeartRateIconTextL2 {
     fill: red;
-    y: 77;
-    font-size: 40;
+    y: 72;
 }
 
 #statsPaceLabel {
@@ -197,9 +197,11 @@
     font-size: 30;
 }
 
+/* STATS SECTION*/
+
 .health {
     fill: white;
-    x: 50%-35;
+    x: 50%-45;
     text-anchor: start;
     font-size: 40;
     text-length: 10;
@@ -212,7 +214,7 @@
 
 #statsZoneText {
     y: 105;
-    x: 50%-20;
+    x: 50%-30;
     font-size: 30;
     font-weight: bold;
     fill: white;
@@ -220,6 +222,7 @@
 
 #statsPaceText {
     y: 160;
+    font-size: 45;
 }
 
 #statsStepsText {
@@ -241,6 +244,8 @@
     font-size: 30;
 }
 
+/* SEPARATOR SECTION */
+
 .chapter {
     font-size: 20;
     text-length: 50;
@@ -250,9 +255,127 @@
 }
 
 #last-minute {
-    y: 128;
+    y: 123;
 }
 
 #last-five-minutes {
     y: 185;
+}
+
+/* TODAY ACTIVITY SECTION */
+
+#today text {
+    text-length: 10;
+}
+
+#todayLabel {
+    text-anchor: middle;
+    font-size: 25;
+    font-weight: bold;
+    fill: lightgray;
+    x: 50%;
+    y: 30;
+}
+
+#todayAMLabel {
+    x: 25%+5;
+    y: 60;
+    fill: yellow;
+}
+
+#todayAMText {
+    x: 25%;
+    y: 100;
+    font-size: 40;
+}
+
+.todayAMZone {
+    text-anchor: end;
+    font-size: 20;
+    x: 100%-60;
+    font-weight: bold;
+}
+
+#todayZone1 {
+    fill: #f9a513;
+    y: 60;
+}
+#todayZone2 {
+    fill: #f17719;
+    y: 80;
+}
+#todayZone3 {
+    fill: #e91f38;
+    y: 100;
+}
+
+.todayAZText {
+    text-anchor: start;
+    fill: white;
+    font-size: 20;
+    x: 100%-50;
+}
+
+#todayAMZ1Text {
+    y: 60;
+}
+#todayAMZ2Text {
+    y: 80;
+}
+#todayAMZ3Text {
+    y: 100;
+}
+
+/* STEPS, ELEVATION ETC. */
+
+.todayLabel {
+    text-anchor: middle;
+    font-size: 25;
+    font-weight: bold;
+}
+
+.todayText {
+    font-size: 30;
+    text-anchor: middle;
+    fill: white;
+}
+
+#todayStepsLabel {
+    x: 25%;
+    y: 140;
+    fill: #7777ff;
+}
+#todayStepsText {
+    x: 25%;
+    y: 170;
+}
+
+#todayDistLabel {
+    x: 75%;
+    y: 140;
+    fill: #7777ff;
+}
+#todayDistText {
+    x: 75%;
+    y: 170;
+}
+
+#todayElevLabel {
+    x: 25%;
+    y: 210;
+    fill: green;
+}
+#todayElevText {
+    x: 25%;
+    y: 240;
+}
+
+#todayCalLabel {
+    x: 75%;
+    y: 210;
+    fill: orange;
+}
+#todayCalText {
+    x: 75%;
+    y: 240;
 }

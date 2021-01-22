@@ -12,7 +12,8 @@ import * as fs from "fs";
 import { vibration } from "haptics";
 import { zoneColors, getZone } from './zones';
 import { Stats } from './stats';
-require('./devices');
+import { deviceAdjustments } from "./devices";
+import { Today } from "./today";
 
 const SETTINGS_TYPE = "cbor";
 const SETTINGS_FILE = "settings.cbor";
@@ -26,6 +27,8 @@ if (me.permissions.granted("access_heart_rate")) {
 	}
 	hrm.start();
 }
+
+deviceAdjustments();
 
 // Update the clock every minute
 clock.granularity = "seconds";
@@ -69,6 +72,7 @@ const week = {
 
 const screens = [
 	'clock',
+	'today',
 	'stats'
 ];
 
@@ -205,8 +209,16 @@ clock.ontick = (evt) => {
 	let monthNo = util.zeroPad(thisDay.getMonth()+1);
 	let yearNo = thisDay.getYear() + 1900;
 
+	statsTime.text = `${hours}:${mins}:${secs}${clockPad}`;
+
+	if (screens[screenIndex] === 'today') {
+		statsTime.style.visibility = 'visible';
+
+		Today.paintStats();
+	}
+
 	if (screens[screenIndex] === 'stats') {
-		statsTime.text = `${hours}:${mins}:${secs}${clockPad}`;
+		statsTime.style.visibility = 'visible';
 
 		const aStats = activityStats.getStats();
 
@@ -237,6 +249,7 @@ clock.ontick = (evt) => {
 	}
 
 	if (screens[screenIndex] === 'clock') {
+		statsTime.style.visibility = 'hidden';
 		clockText.text = `${hours}:${mins}`;//:${secs}`;
 		dateText.text = `${yearNo}-${monthNo}-${dayNo}`;
 		weekText.text = week[thisDay.getDay()];

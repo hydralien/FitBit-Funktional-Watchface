@@ -47,8 +47,31 @@
         <text id="statsFloorsLabel" class="healthLabel">Elev.</text>
         <text id="statsFloorsText" class="health"/>
 
-        <text id="statsTime" class="stats-time"/>
     </g>
+    <g id="today">
+        <text id="todayLabel">TODAY</text>
+
+        <text id="todayAMLabel" class="todayLabel">zone minutes</text>
+        <text id="todayAMText" class="todayText">0</text>
+
+        <text id="todayZone1" class="todayAMZone">fat burn</text> <text id="todayAMZ1Text" class="todayAZText">0</text>
+        <text id="todayZone2" class="todayAMZone">cardio</text> <text id="todayAMZ2Text" class="todayAZText">0</text>
+        <text id="todayZone3" class="todayAMZone">peak</text> <text id="todayAMZ3Text" class="todayAZText">0</text>
+
+        <text id="todayStepsLabel" class="todayLabel">steps</text>
+        <text id="todayStepsText" class="todayText">0</text>
+
+        <text id="todayDistLabel" class="todayLabel">distance</text>
+        <text id="todayDistText" class="todayText">0</text>
+
+        <text id="todayElevLabel" class="todayLabel">floors</text>
+        <text id="todayElevText" class="todayText">0</text>
+
+        <text id="todayCalLabel" class="todayLabel">calories</text>
+        <text id="todayCalText" class="todayText">0</text>
+    </g>
+
+    <text id="statsTime" class="stats-time"/>
     <g id="locking">
         <image class="icon" id="lockIcon" href="lock_solid_24px.png"/>
         <rect id="lockTextBg"/>
