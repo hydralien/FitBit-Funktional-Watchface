@@ -105,7 +105,7 @@ export function renderStats(aStats, heartRate) {
 		getElement('statsHeartRateText').text = '--';
 	}
 
-	const paceMeasure = isImperial ? 'mi.' : 'km';
+	const paceMeasure = isImperial() ? 'mi.' : 'km';
 
 	getElement('statsPaceText').text = `${aStats.oneMinPace}/${paceMeasure}`;
 	getElement('statsStepsText').text =  `${aStats.fiveMinDistance} ${paceMeasure}`;
