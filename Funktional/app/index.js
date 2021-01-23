@@ -1,17 +1,14 @@
 import clock from "clock";
 import document from "document";
 import { preferences, units } from "user-settings";
-import { user } from "user-profile";
 import { HeartRateSensor } from "heart-rate";
-import { minuteHistory, today } from "user-activity";
 import { me } from "appbit";
 import { today } from "user-activity";
 import { battery } from "power";
 import * as util from "../common/utils";
 import * as fs from "fs";
 import { vibration } from "haptics";
-import { zoneColors, getZone } from './zones';
-import { Stats } from './stats';
+import { Stats, renderStats } from './stats';
 import { deviceAdjustments } from "./devices";
 import { Today } from "./today";
 
@@ -51,12 +48,6 @@ const lockText = document.getElementById("lockText");
 const lockTextBg = document.getElementById("lockTextBg");
 const lockIcon = document.getElementById("lockIcon");
 const globalScape = document.getElementById("globalScape");
-
-const statsHeartRateText = document.getElementById("statsHeartRateText");
-const statsZoneText = document.getElementById("statsZoneText");
-const statsPaceText = document.getElementById("statsPaceText");
-const statsStepsText = document.getElementById("statsStepsText");
-const statsFloorsText = document.getElementById("statsFloorsText");
 
 const statsTime = document.getElementById("statsTime");
 
@@ -125,8 +116,8 @@ let lockToggle = (evt) => {
 globalScape.onload = () => {
 	screens.forEach((screen, index) => {
 		const screenElement = document.getElementById(screen);
-		if (index === screenIndex) screenElement.style.visibility = 'visible'
-		else screenElement.style.visibility = 'hidden'
+		if (index === screenIndex) screenElement.style.visibility = 'inline'
+		else screenElement.style.display = 'none'
 	});
 	lockIcon.style.visibility = screenLocked ? 'visible' : 'hidden';
 };
@@ -167,8 +158,8 @@ globalScape.onclick = (evt) => {
 	screenIndex = (screenIndex + 1) % screens.length;
 	const newScreen = document.getElementById(screens[screenIndex]);
 
-	prevScreen.style.visibility = 'hidden';
-	newScreen.style.visibility = 'visible';
+	prevScreen.style.display = 'none';
+	newScreen.style.display = 'inline';
 
 	settings[SCREEN_INDEX] = screenIndex;
 	clock.ontick(evt);
@@ -209,12 +200,12 @@ clock.ontick = (evt) => {
 	let monthNo = util.zeroPad(thisDay.getMonth()+1);
 	let yearNo = thisDay.getYear() + 1900;
 
-	statsTime.text = `${hours}:${mins}:${secs}${clockPad}`;
-
 	if (screens[screenIndex] === 'today') {
 		statsTime.style.visibility = 'visible';
 
 		Today.paintStats();
+
+		statsTime.text = `${hours}:${mins}:${secs}${clockPad}`;
 	}
 
 	if (screens[screenIndex] === 'stats') {
@@ -222,30 +213,9 @@ clock.ontick = (evt) => {
 
 		const aStats = activityStats.getStats();
 
-		if (heartRate) {
-			let userAge = 30;
-			let maxHeartRate = undefined;
-			if (me.permissions.granted("access_user_profile")) {
-				userAge = user.age;
-				maxHeartRate = user.maxHeartRate;
-			}
+		renderStats(aStats, heartRate);
 
-			const hrZone = getZone(heartRate, userAge, maxHeartRate);
-			const hrZoneColor = zoneColors[hrZone];
-
-			statsZoneText.style.fill = hrZoneColor;
-			statsHeartRateText.style.fill = hrZoneColor;
-			statsHeartRateText.text = heartRate;
-			statsZoneText.text = hrZone;
-		} else {
-			statsHeartRateText.text = '--';
-		}
-
-		const paceMeasure = isImperial ? 'mi.' : 'km';
-
-		statsPaceText.text = `${aStats.oneMinPace}/${paceMeasure}`;
-		statsStepsText.text =  `${aStats.fiveMinDistance} ${paceMeasure}`;
-		statsFloorsText.text = `${aStats.fiveMinElevation} floors`;
+		statsTime.text = `${hours}:${mins}:${secs}${clockPad}`;
 	}
 
 	if (screens[screenIndex] === 'clock') {

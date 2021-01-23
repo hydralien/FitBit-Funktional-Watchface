@@ -1,6 +1,10 @@
 import { minuteHistory, today } from "user-activity";
 import { me } from "appbit";
+import { user } from "user-profile";
+
 import {isImperial,convertDistance} from "./imperial";
+import { getElement } from "../common/utils";
+import {getZone, zoneColors} from "./zones";
 
 const MILE_SCALE = 1.609344;
 
@@ -79,4 +83,31 @@ export class Stats {
 			this.oneMinTriggerTime = currentTime + 60 * 1000;
 		}
 	}
+}
+
+export function renderStats(aStats, heartRate) {
+	if (heartRate) {
+		let userAge = 30;
+		let maxHeartRate = undefined;
+		if (me.permissions.granted("access_user_profile")) {
+			userAge = user.age;
+			maxHeartRate = user.maxHeartRate;
+		}
+
+		const hrZone = getZone(heartRate, userAge, maxHeartRate);
+		const hrZoneColor = zoneColors[hrZone];
+
+		getElement('statsZoneText').style.fill = hrZoneColor;
+		getElement('statsHeartRateText').style.fill = hrZoneColor;
+		getElement('statsHeartRateText').text = heartRate;
+		getElement('statsZoneText').text = hrZone;
+	} else {
+		getElement('statsHeartRateText').text = '--';
+	}
+
+	const paceMeasure = isImperial ? 'mi.' : 'km';
+
+	getElement('statsPaceText').text = `${aStats.oneMinPace}/${paceMeasure}`;
+	getElement('statsStepsText').text =  `${aStats.fiveMinDistance} ${paceMeasure}`;
+	getElement('statsFloorsText').text = `${aStats.fiveMinElevation} floors`;
 }
