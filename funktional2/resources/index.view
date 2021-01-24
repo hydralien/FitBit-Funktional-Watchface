@@ -68,13 +68,13 @@
         <text id="todayStepsLabel" class="todayLabel">steps</text>
         <text id="todayStepsText" class="todayText">0</text>
 
-        <text id="todayDistLabel" class="todayLabel">distance</text>
+        <text id="todayDistLabel" class="todayLabel">distance, mi. </text>
         <text id="todayDistText" class="todayText">0</text>
 
         <text id="todayElevLabel" class="todayLabel">floors</text>
         <text id="todayElevText" class="todayText">0</text>
 
-        <text id="todayCalLabel" class="todayLabel">calories</text>
+        <text id="todayCalLabel" class="todayLabel">calories, kcal</text>
         <text id="todayCalText" class="todayText">0</text>
     </g>
     <g transform="translate(0,30)">

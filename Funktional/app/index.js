@@ -6,7 +6,9 @@ import { me } from "appbit";
 import { today } from "user-activity";
 import { battery } from "power";
 import * as util from "../common/utils";
+import * as time from "../common/time";
 import * as fs from "fs";
+import * as messaging from "messaging";
 import { vibration } from "haptics";
 import { Stats, renderStats } from './stats';
 import { deviceAdjustments } from "./devices";
@@ -51,16 +53,6 @@ const globalScape = document.getElementById("globalScape");
 
 const statsTime = document.getElementById("statsTime");
 
-const week = {
-	0: 'Sunday',
-	1: 'Monday',
-	2: 'Tuesday',
-	3: 'Wednesday',
-	4: 'Thursday',
-	5: 'Friday',
-	6: 'Saturday'
-};
-
 const screens = [
 	'clock',
 	'today',
@@ -83,9 +75,35 @@ function saveSettings() {
 	fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
 }
 
+function applySettings() {
+	if (settings.clockColor)  {
+		clockText.style.fill = settings.clockColor;
+		clockAM.style.fill = settings.clockColor;
+		clockPM.style.fill = settings.clockColor;
+	}
+	if (settings.dateColor) {
+		dateText.style.fill = settings.dateColor;
+		weekText.style.fill = settings.dateColor;
+	}
+}
+
 me.addEventListener("unload", saveSettings);
 
 let settings = loadSettings();
+applySettings();
+
+messaging.peerSocket.addEventListener("message", (evt) => {
+	const settingsList = {
+		'dateFormat': (dateSettings) => settings.dateFormat = dateSettings.values[0].value,
+		'clockColor': (colorSetting) => settings.clockColor = colorSetting,
+		'dateColor': (colorSetting) => settings.dateColor = colorSetting
+	};
+
+	if (evt && evt.data) {
+		if (settingsList[evt.data.key]) settingsList[evt.data.key](evt.data.value);
+		applySettings();
+	}
+});
 
 const SCREEN_INDEX = 'screen-index';
 const LOCK_STATE = 'lock-state';
@@ -195,11 +213,6 @@ clock.ontick = (evt) => {
 	let mins = util.zeroPad(minutes);
 	let secs = util.zeroPad(seconds);
 
-	//let thisTZDay = new Date(thisDay.getTime() + thisDay.getTimezoneOffset()*60000);
-	let dayNo = util.zeroPad(thisDay.getDate());
-	let monthNo = util.zeroPad(thisDay.getMonth()+1);
-	let yearNo = thisDay.getYear() + 1900;
-
 	if (screens[screenIndex] === 'today') {
 		statsTime.style.visibility = 'visible';
 
@@ -221,8 +234,8 @@ clock.ontick = (evt) => {
 	if (screens[screenIndex] === 'clock') {
 		statsTime.style.visibility = 'hidden';
 		clockText.text = `${hours}:${mins}`;//:${secs}`;
-		dateText.text = `${yearNo}-${monthNo}-${dayNo}`;
-		weekText.text = week[thisDay.getDay()];
+		dateText.text = time.dateFormat(thisDay, settings.dateFormat);
+		weekText.text = time.weekMap[thisDay.getDay()];
 		heartRateText.text = heartRate || '--';
 		floorsText.text = today.local ? (today.local.elevationGain || 0) : 0;
 		stepsText.text = today.local ? (today.local.steps || 0) : 0;
