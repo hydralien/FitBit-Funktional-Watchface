@@ -5,6 +5,8 @@ import document from "document";
 import {isImperial,convertDistance,distanceMeasure} from "./imperial";
 import { getElement } from "../common/utils";
 
+getElement('todayDistLabel').text = `distance, ${distanceMeasure()}`;
+
 export class Today {
 	static paintStats() {
 		if (!me.permissions.granted("access_activity")) {
@@ -19,9 +21,9 @@ export class Today {
 		getElement("todayAMZ3Text").text = todayStats.activeZoneMinutes.peak || 0;
 
 		getElement("todayStepsText").text = todayStats.steps || 0;
-		getElement("todayDistText").text = `${convertDistance((todayStats.distance || 0)/1000, 1)} ${distanceMeasure()}`;
+		getElement("todayDistText").text = `${convertDistance((todayStats.distance || 0)/1000, 1)}`;
 
 		getElement("todayElevText").text = `${todayStats.elevationGain || 0}`;
-		getElement("todayCalText").text = `${todayStats.calories || 0} kcal`;
+		getElement("todayCalText").text = `${todayStats.calories || 0}`;
 	}
 }

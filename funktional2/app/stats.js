@@ -52,7 +52,7 @@ export class Stats {
 				fiveMinElevation += minuteRecord.elevationGain || 0;
 			})
 			this.fiveMinElevation = fiveMinElevation;
-			this.fiveMinDistance = convertDistance(fiveMinDist)
+			this.fiveMinDistance = convertDistance(fiveMinDist / 1000)
 
 			this.fiveMinTriggerTime = currentTime + (5 * 60) * 1000;
 		}

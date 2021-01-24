@@ -164,8 +164,9 @@
 
 .healthLabel {
     text-anchor: end;
-    x: 50%-55;
+    x: 50%-60;
     font-weight: bold;
+    font-family: Fabrikat-Bold;
     text-length: 6;
     font-size: 35;
 }
@@ -201,7 +202,7 @@
 
 .health {
     fill: white;
-    x: 50%-45;
+    x: 50%-55;
     text-anchor: start;
     font-size: 40;
     text-length: 10;
@@ -285,14 +286,14 @@
 
 #todayAMText {
     x: 25%;
-    y: 100;
-    font-size: 40;
+    y: 110;
+    font-size: 50;
 }
 
 .todayAMZone {
     text-anchor: end;
-    font-size: 20;
-    x: 100%-60;
+    font-size: 23;
+    x: 100%-58;
     font-weight: bold;
 }
 
@@ -302,17 +303,18 @@
 }
 #todayZone2 {
     fill: #f17719;
-    y: 80;
+    y: 85;
 }
 #todayZone3 {
     fill: #e91f38;
-    y: 100;
+    y: 110;
 }
 
 .todayAZText {
     text-anchor: start;
     fill: white;
-    font-size: 20;
+    font-size: 23;
+    font-family: Fabrikat-Bold;
     x: 100%-50;
 }
 
@@ -320,10 +322,10 @@
     y: 60;
 }
 #todayAMZ2Text {
-    y: 80;
+    y: 85;
 }
 #todayAMZ3Text {
-    y: 100;
+    y: 110;
 }
 
 /* STEPS, ELEVATION ETC. */
@@ -332,22 +334,23 @@
     text-anchor: middle;
     font-size: 25;
     font-weight: bold;
+    font-family: Fabrikat-Bold;
 }
 
 .todayText {
-    font-size: 30;
+    font-size: 40;
     text-anchor: middle;
     fill: white;
 }
 
 #todayStepsLabel {
     x: 25%;
-    y: 140;
+    y: 145;
     fill: #7777ff;
 }
 #todayStepsText {
     x: 25%;
-    y: 170;
+    y: 180;
 }
 
 #todayDistLabel {
@@ -357,7 +360,7 @@
 }
 #todayDistText {
     x: 75%;
-    y: 170;
+    y: 180;
 }
 
 #todayElevLabel {
@@ -367,7 +370,7 @@
 }
 #todayElevText {
     x: 25%;
-    y: 240;
+    y: 250;
 }
 
 #todayCalLabel {
@@ -377,5 +380,5 @@
 }
 #todayCalText {
     x: 75%;
-    y: 240;
+    y: 250;
 }
