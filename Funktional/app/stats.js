@@ -1,6 +1,7 @@
 import { minuteHistory, today } from "user-activity";
 import { me } from "appbit";
 import { user } from "user-profile";
+import document from "document";
 
 import {isImperial,convertDistance} from "./imperial";
 import { getElement } from "../common/utils";
@@ -8,8 +9,11 @@ import {getZone, zoneColors} from "./zones";
 
 const MILE_SCALE = 1.609344;
 
+const minuteMeterWidth = 180;
+const minuteMeter = document.getElementById('minute-length')
+
 export class Stats {
-	oneMinTriggerTime = 0;
+	lastMinute = 0;
 
 	fiveMinTriggerTime = 0;
 
@@ -26,8 +30,8 @@ export class Stats {
 	constructor() {
 	}
 
-	getStats() {
-		this.refreshStats();
+	getStats(thisDate) {
+		this.refreshStats(thisDate);
 
 		return {
 			oneMinPace: this.oneMinPace,
@@ -36,8 +40,8 @@ export class Stats {
 		}
 	}
 
-	refreshStats() {
-		const currentTime = new Date().getTime();
+	refreshStats(thisDate) {
+		const currentTime = thisDate.getTime();
 
 		if (!me.permissions.granted("access_activity")) {
 			return
@@ -57,7 +61,9 @@ export class Stats {
 			this.fiveMinTriggerTime = currentTime + (5 * 60) * 1000;
 		}
 
-		if (currentTime > this.oneMinTriggerTime) {
+		const thisMinute = thisDate.getMinutes()
+		minuteMeter.width = minuteMeterWidth * ((60 - thisDate.getSeconds()) / 60)
+		if (thisMinute > this.lastMinute || thisMinute + this.lastMinute > 60) {
 			const minuteRecords = minuteHistory.query({limit: 1});
 			const lastMinute = minuteRecords.length > 0 ? minuteRecords[0] : {};
 
@@ -80,7 +86,7 @@ export class Stats {
 
 			this.oneMinDistance = convertDistance(distKm);
 
-			this.oneMinTriggerTime = currentTime + 60 * 1000;
+			this.lastMinute = thisMinute;
 		}
 	}
 }

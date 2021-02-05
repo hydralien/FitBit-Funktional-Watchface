@@ -185,10 +185,10 @@ globalScape.onclick = (evt) => {
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
-	let thisDay = evt.date || new Date();
-	let hours = thisDay.getHours();
-	let minutes = thisDay.getMinutes();
-	let seconds = thisDay.getSeconds();
+	let thisDate = evt.date || new Date();
+	let hours = thisDate.getHours();
+	let minutes = thisDate.getMinutes();
+	let seconds = thisDate.getSeconds();
 
 	let clockPad = ''
 	if (preferences.clockDisplay === "12h") {
@@ -224,7 +224,7 @@ clock.ontick = (evt) => {
 	if (screens[screenIndex] === 'stats') {
 		statsTime.style.visibility = 'visible';
 
-		const aStats = activityStats.getStats();
+		const aStats = activityStats.getStats(thisDate);
 
 		renderStats(aStats, heartRate);
 
@@ -234,8 +234,8 @@ clock.ontick = (evt) => {
 	if (screens[screenIndex] === 'clock') {
 		statsTime.style.visibility = 'hidden';
 		clockText.text = `${hours}:${mins}`;//:${secs}`;
-		dateText.text = time.dateFormat(thisDay, settings.dateFormat);
-		weekText.text = time.weekMap[thisDay.getDay()];
+		dateText.text = time.dateFormat(thisDate, settings.dateFormat);
+		weekText.text = time.weekMap[thisDate.getDay()];
 		heartRateText.text = heartRate || '--';
 		floorsText.text = today.local ? (today.local.elevationGain || 0) : 0;
 		stepsText.text = today.local ? (today.local.steps || 0) : 0;

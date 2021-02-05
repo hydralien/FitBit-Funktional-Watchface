@@ -35,6 +35,7 @@
         <text id="statsZoneText" class="health"/>
 
         <text id="last-minute" class="chapter">last minute:</text>
+        <rect id="minute-length" x="115" y="113" width="180" height="10" fill="orange" />
 
         <text id="statsPaceLabel" class="healthLabel">Pace</text>
         <text id="statsPaceText" class="health"/>
