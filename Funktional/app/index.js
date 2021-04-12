@@ -53,10 +53,10 @@ const globalScape = document.getElementById("globalScape");
 
 const statsTime = document.getElementById("statsTime");
 
+const allScreens = ['clock','today','stats'];
+
 const screens = [
-	'clock',
-	'today',
-	'stats'
+	'clock'
 ];
 
 const isImperial = units ? units.distance === 'us' : preferences.clockDisplay === "12h";
@@ -75,6 +75,28 @@ function saveSettings() {
 	fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
 }
 
+function resetScreens() {
+	allScreens.forEach((screen, index) => {
+		const screenElement = document.getElementById(screen);
+		screenElement.style.display = 'none'
+	});
+	const screenElement = document.getElementById(screens[screenIndex]);
+	screenElement.style.display = 'inline'
+}
+
+function addScreen(screenName) {
+	if (screens.indexOf(screenName) > -1) return;
+	screens.push(screenName);
+}
+
+function removeScreen(screenName) {
+	const screenRemoveIndex = screens.indexOf(screenName);
+	if (screenRemoveIndex === -1) return;
+	screenIndex = 0;
+	screens.splice(screenRemoveIndex,1);
+	resetScreens();
+}
+
 function applySettings() {
 	if (settings.clockColor)  {
 		clockText.style.fill = settings.clockColor;
@@ -84,6 +106,17 @@ function applySettings() {
 	if (settings.dateColor) {
 		dateText.style.fill = settings.dateColor;
 		weekText.style.fill = settings.dateColor;
+	}
+
+	if (settings.showTodayStats) {
+		addScreen('today');
+	} else {
+		removeScreen('today')
+	}
+	if (settings.showCurrentStats) {
+		addScreen('stats');
+	} else {
+		removeScreen('stats');
 	}
 }
 
@@ -96,7 +129,9 @@ messaging.peerSocket.addEventListener("message", (evt) => {
 	const settingsList = {
 		'dateFormat': (dateSettings) => settings.dateFormat = dateSettings.values[0].value,
 		'clockColor': (colorSetting) => settings.clockColor = colorSetting,
-		'dateColor': (colorSetting) => settings.dateColor = colorSetting
+		'dateColor': (colorSetting) => settings.dateColor = colorSetting,
+		'showTodayStats': (showTodayStats) => settings.showTodayStats = showTodayStats,
+		'showCurrentStats': (showCurrentStats) => settings.showCurrentStats = showCurrentStats
 	};
 
 	if (evt && evt.data) {
@@ -108,8 +143,10 @@ messaging.peerSocket.addEventListener("message", (evt) => {
 const SCREEN_INDEX = 'screen-index';
 const LOCK_STATE = 'lock-state';
 let screenIndex = settings[SCREEN_INDEX] || 0;
+if (screenIndex >= screens.length) screenIndex = 0;
 
 let screenLocked = settings[LOCK_STATE] || false;
+if (screens.length === 1) screenLocked = false;
 let lockTimer = undefined;
 let lockHintTimer = undefined;
 
@@ -119,6 +156,7 @@ let hideLockHint = (evt) => {
 }
 
 let lockToggle = (evt) => {
+	if (screens.length === 1) return;
 	if (screenLocked) {
 		screenLocked = false;
 		hideLockHint(evt);
@@ -132,11 +170,7 @@ let lockToggle = (evt) => {
 };
 
 globalScape.onload = () => {
-	screens.forEach((screen, index) => {
-		const screenElement = document.getElementById(screen);
-		if (index === screenIndex) screenElement.style.visibility = 'inline'
-		else screenElement.style.display = 'none'
-	});
+	resetScreens();
 	lockIcon.style.visibility = screenLocked ? 'visible' : 'hidden';
 };
 
@@ -163,6 +197,7 @@ globalScape.onmousemove = (evt) => {
 }
 
 globalScape.onclick = (evt) => {
+	if (screens.length === 1) return;
 	lockText.text = screenLocked ? "Long tap to unlock" : "Long tap to lock";
 	lockText.style.visibility = 'visible';
 	lockTextBg.style.visibility = 'visible';

@@ -5,7 +5,9 @@ import {me as companion} from "companion";
 const settingsList = [
 	'dateFormat',
 	'clockColor',
-	'dateColor'
+	'dateColor',
+	'showCurrentStats',
+	'showTodayStats'
 ];
 
 if (companion.launchReasons.settingsChanged) {

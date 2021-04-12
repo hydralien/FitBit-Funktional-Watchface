@@ -50,6 +50,18 @@ function FunktionalSettings(props) {
 				/>
 			</Section>
 			<Section
+				title={<Text bold align="center">Extra screens</Text>}>
+				<Text>Screens are switched by tapping the watchface. Long-tap locks/unlocks current screen.</Text>
+				<Toggle
+					settingsKey="showTodayStats"
+					label="Today stats screen"
+				/>
+				<Toggle
+					settingsKey="showCurrentStats"
+					label="Current performance screen"
+				/>
+			</Section>
+			<Section
 				title={<Text bold align="center">Date text color</Text>}>
 				<ColorSelect
 					settingsKey="dateColor"
