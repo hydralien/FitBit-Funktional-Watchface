@@ -292,7 +292,7 @@
     error-subclass "^2.2.0"
     tslib "^2.0.3"
 
-"@fitbit/sdk-cli@1.7.3":
+"@fitbit/sdk-cli@^1.7.3":
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/@fitbit/sdk-cli/-/sdk-cli-1.7.3.tgz#f17dd0f02a3e17f1c2c423c4a8b254901bb0730f"
   integrity sha512-nwfwlp2T05CQMPVui6+mfefZdPUZ/YaeFOI9tt0q/mUvrn494Y7uOt4H7OEuOqTRzXhlAPapO43Col1Ny7RUtQ==
@@ -327,10 +327,10 @@
     update-notifier "^4.1.1"
     websocket-stream "^5.5.2"
 
-"@fitbit/sdk@5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@fitbit/sdk/-/sdk-5.0.1.tgz#cc2946bed2acd3921e92e49fcedd539006a14436"
-  integrity sha512-VvZNBd0qQcTTQ4hK9bWD9FCdcOs/kQay0Vt/8ouMmgGWT7e3f/R800qzTyYCENHf+ubL2INGyGcOLJgpo7c5Ng==
+"@fitbit/sdk@~5.0.1":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@fitbit/sdk/-/sdk-5.0.2.tgz#75b4035c59cbd7f4748bcc412a77918d7a46e71a"
+  integrity sha512-6C5B5emYyt98WzZU0o08zdPch6TK9QpOyVqukLaykdACxebvOTLcTwTVyBPsCVQgiAENzYBVM92pHrjWqflYfA==
   dependencies:
     "@babel/core" "^7.11.1"
     "@babel/plugin-syntax-dynamic-import" "^7.8.3"
@@ -366,7 +366,7 @@
     plugin-error "^1.0.1"
     pofile "^1.1.0"
     pumpify "^2.0.1"
-    rollup "^2.25.0"
+    rollup "2.41.3"
     rollup-plugin-babel "^4.4.0"
     semver "^7.3.2"
     simple-random "^1.0.3"
@@ -1291,10 +1291,10 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
-fsevents@~2.1.2:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.3.tgz#fb738703ae8d2f9fe900c33836ddebee8b97f23e"
-  integrity sha512-Auw9a4AxqWpa9GUfj370BMPzzyncfBABW8Mab7BGWBYDj4Isgq+cDKtx0i6u9jcX9pQDnswsaaOTgTmA5pEjuQ==
+fsevents@~2.3.1:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
+  integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
 function-bind@^1.1.1:
   version "1.1.1"
@@ -2239,9 +2239,9 @@ path-is-absolute@^1.0.0:
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
 
 path-parse@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
-  integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
+  integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
 picomatch@^2.2.2:
   version "2.2.2"
@@ -2503,12 +2503,12 @@ rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^2.25.0:
-  version "2.37.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.37.0.tgz#5baf631dc224a56d7eb88dd11b20aa28c1e8dc6f"
-  integrity sha512-cbxuxkMGCQV+TnVh+yZSUerbVb5i8soRydbzHYoMNojgt7MMi+jDLLs24U9HHCssKkwkXmsj+LXcOZMldTbz2w==
+rollup@2.41.3:
+  version "2.41.3"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.41.3.tgz#b224f3863a1660e9d5233ffd2fa0800d90f66433"
+  integrity sha512-swrSUfX3UK7LGd5exBJNUC7kykdxemUTRuyO9hUFJsmQUsUovHcki9vl5MAWFbB6oI47HpeZHtbmuzdm1SRUZw==
   optionalDependencies:
-    fsevents "~2.1.2"
+    fsevents "~2.3.1"
 
 run-async@^2.2.0, run-async@^2.4.0:
   version "2.4.1"
